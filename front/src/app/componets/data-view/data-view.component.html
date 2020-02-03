@@ -1,0 +1,18 @@
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">User</th>
+        <th scope="col">Temperature</th>
+        <th scope="col">humidity</th>
+        <th scope="col">GPS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of dataArray ">
+        <td>{{data.user}}</td>
+        <td>{{data.temperature}}</td>
+        <td>{{data.humidity}}</td>
+        <td>{{data.gps}}</td>
+      </tr>
+    </tbody>
+  </table>

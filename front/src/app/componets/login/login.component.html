@@ -1,0 +1,24 @@
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="https://pbs.twimg.com/profile_images/679752408898138112/-0mu9p9r_400x400.jpg" class="card-img" alt="">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">User</label>
+            <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [formControl]="userControl">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" [formControl]="passwordControl">
+          </div>
+          <button type="submit" class="btn btn-primary" routerLink="/dataView" (click)="getControl()">Submit</button>
+          <button type="submit" class="btn btn-primary" routerLink="/register">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
