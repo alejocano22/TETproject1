@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componets/login/login.component';
 import { RegisterComponent } from './componets/register/register.component';
-import { DataViewComponent } from './componets/data-view/data-view.component';
+import { ArduinoViewComponent } from './componets/arduino-view/arduino-view.component';
 import { HttpClientModule } from '@angular/common/http';
-import { DataService } from './services/data.service';
+import { arduinoService } from './services/arduino.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    DataViewComponent
+    ArduinoViewComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [DataService],
+  providers: [arduinoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

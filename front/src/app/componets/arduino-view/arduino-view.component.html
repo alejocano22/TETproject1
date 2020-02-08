@@ -3,16 +3,16 @@
       <tr>
         <th scope="col">User</th>
         <th scope="col">Temperature</th>
-        <th scope="col">humidity</th>
+        <th scope="col">Humidity</th>
         <th scope="col">GPS</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of dataArray ">
-        <td>{{data.user}}</td>
-        <td>{{data.temperature}}</td>
-        <td>{{data.humidity}}</td>
-        <td>{{data.gps}}</td>
+      <tr *ngFor="let arduino of arduinoArray">
+        <td>{{arduino.user}}</td>
+        <td>{{arduino.temperature}}</td>
+        <td>{{arduino.humidity}}</td>
+        <td>{{arduino.gps}}</td>
       </tr>
     </tbody>
   </table>

@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 
 
 //Rutas
-app.use('/api/data', require('./routes/crud.routes'));
-
+app.use('/api/arduino', require('./routes/arduino.routes'));
+app.use('/api/user', require('./routes/user.routes'));
 
 //Inicializar el server
 app.listen(app.get('port'), () =>{
