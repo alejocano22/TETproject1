@@ -1,10 +1,14 @@
 const Arduino = require('../models/arduino');
-const arduinoArray = {};
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
-arduinoArray.getArduino = async (req, res) => {
+const getArduino = async (req, res) => {
   try {
-    const arduino = await Arduino.find();
-    res.json(arduino);
+    console.log(req.query);
+    const arduino = await Arduino.find({
+      user: req.query.email
+    });
+    res.send(arduino);
   } catch (e) {
     console.log('getArduino error:', e);
     res.status(500).send({ status: 'ERROR', data: e.message });
@@ -12,7 +16,7 @@ arduinoArray.getArduino = async (req, res) => {
 };
 
 
-arduinoArray.postArduino = async (req, res) => {
+const postArduino = async (req, res) => {
   try {
     const arduino = new Arduino(req.body);
     console.log(arduino);
@@ -24,4 +28,4 @@ arduinoArray.postArduino = async (req, res) => {
   }
 };
 
-module.exports = arduinoArray;
+module.exports = {getArduino, postArduino};

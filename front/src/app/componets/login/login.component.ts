@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms'
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { HttpClient } from "@angular/common/http";
+import { Router } from "@angular/router";
+import * as myGlobals from '../globals';
 
 @Component({
   selector: 'app-login',
@@ -8,26 +11,50 @@ import { FormControl } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  //public userArray: User[] = [];
+  registered = false;
+  submitted = false;
+  userForm: FormGroup;
+  serviceErrors: any = {};
 
-  public userControl = new FormControl('');
-  public passwordControl = new FormControl('');
-
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
-  }
-
-  public getControl(){
-    console.log(this.userControl.value);
-    console.log(this.passwordControl.value);
-  }
-
- /* public postData(){
-    this.userArray = await this.userService.postUser({
-      user: this.userControl.value,
-      password: this.passwordControl.value
+    this.userForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.maxLength(50)]],
+      psw: ['', [Validators.required, Validators.maxLength(50), Validators.minLength(3)]]
     });
-  }*/
+  }
+
+  onSubmit() {
+    this.submitted = true;
+    if (this.userForm.invalid == true) {
+      return;
+    }
+    else {
+      let data: any = Object.assign(this.userForm.value);
+      let email = data['email'];
+      this.http.post(myGlobals.url + 'user/login', data).subscribe((data: any) => {
+
+        localStorage.setItem('email', email);
+
+        let path = '/arduinoView';
+        this.router.navigate([path]);
+
+      }, error => {
+        alert("Incorrect user or password !");
+        this.serviceErrors = error.error.error;
+      });
+      this.registered = true;
+    }
+  }
+
+  invalidEmail() {
+    return (this.submitted && (this.serviceErrors.email != null || this.userForm.controls.email.errors != null));
+  }
+
+  invalidPassword() {
+    return (this.submitted && (this.serviceErrors.psw != null || this.userForm.controls.psw.errors != null));
+  }
+
 
 }

@@ -1,21 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpRequest } from '@angular/common/http';
-import { promise } from 'protractor';
 import { arduino } from '../models/arduino.model';
-import { resolve } from 'url';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from "@angular/router";
+import * as myGlobals from '../componets/globals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class arduinoService {
-  readonly URL = 'http://localhost:3000/api/arduino';
-  constructor(public http: HttpClient) { }  //Métodos para consumir
 
-  public async getArduino(): Promise<arduino[]>{
-    return new Promise<arduino[]>((resolve, reject) =>{
-      this.http.get<arduino[]>(this.URL).subscribe(resolve, reject);
+  serviceErrors: any = {};
+  userForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }  //Métodos para consumir
+
+  public getArduino(){
+    this.userForm = this.formBuilder.group({
+      email: localStorage.getItem('email')
     });
+
+    let data: any = Object.assign(this.userForm.value);
+    
+    console.log(data);
+
+    return this.http.get<arduino[]>(myGlobals.url + 'arduino/get?email=' + localStorage.getItem('email'));
   }
-
-
 }

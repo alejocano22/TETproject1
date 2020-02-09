@@ -1,7 +1,12 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const dotenv = require('dotenv');
 
+//Variables de entorno
+dotenv.config();
+
+const routes = require('./routes');
 const app = express();
 
 const{ mongoose } = require('./database');
@@ -25,8 +30,7 @@ app.use((req, res, next) => {
 
 
 //Rutas
-app.use('/api/arduino', require('./routes/arduino.routes'));
-app.use('/api/user', require('./routes/user.routes'));
+routes(app);
 
 //Inicializar el server
 app.listen(app.get('port'), () =>{

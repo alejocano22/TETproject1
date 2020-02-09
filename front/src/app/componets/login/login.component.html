@@ -1,24 +1,27 @@
-<div class="card mb-3" >
-  <div class="row no-gutters">
-    <div class="col-md-4">
-      <img src="https://pbs.twimg.com/profile_images/679752408898138112/-0mu9p9r_400x400.jpg" class="card-img" alt="">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <form>
-          <div class="form-group">
-            <label for="exampleInputEmail1">User</label>
-            <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [formControl]="userControl">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" [formControl]="passwordControl">
-          </div>
-          <button type="submit" class="btn btn-primary" routerLink="/arduinoView" (click)="getControl()">Submit</button>
-          <button type="submit" class="btn btn-primary" routerLink="/register">Register</button>
-        </form>
-      </div>
+<div class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Login</h5>
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+        <div class="form-group" [ngClass]="{ 'has-error': invalidEmail() }">
+          <!-- email -->
+          <label for="Email" class="control-label">E-Mail</label>
+          <input type="email" formControlName="email" class="form-control" id="email" name="email" placeholder="your@name.com" ngModel email>
+          <p *ngIf="invalidEmail()" id="email_error" class="text-danger">{{this.serviceErrors.email || 'Invalid email.'}}</p>
+        </div>
+        <div class="form-group" [ngClass]="{ 'has-error': invalidPassword() }">
+          <!-- password -->
+          <label for="psw" class="control-label">Password</label>
+          <input type="password" formControlName="psw" class="form-control" id="psw" name="psw" placeholder="******">
+          <p *ngIf="invalidPassword()" id="password_error" class="text-danger">{{this.serviceErrors.psw || 'Invalid password.'}}</p>
+        </div>
+        <div class="form-group has-error">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div class="form-group" align-content: center>
+          <p routerLink="/register">Register</p>
+        </div>
+      </form>
     </div>
   </div>
 </div>
