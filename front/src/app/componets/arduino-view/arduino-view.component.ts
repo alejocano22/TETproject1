@@ -18,7 +18,6 @@ export class ArduinoViewComponent implements OnInit {
   ngOnInit() {
     this.arduinoArray = [];
     this.getArduino();
-    console.log(this.arduinoArray);
   }
 
   logout() {
