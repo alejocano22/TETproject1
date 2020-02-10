@@ -2,7 +2,7 @@ const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const expiresIn = 60 * 10;  //10min
+const expiresIn = 60 * 5;  //5min
 
 const login = async (req, res) => {
   try {
@@ -40,12 +40,18 @@ const register = async (req, res) => {
   try {
     const { name, email, psw } = req.body;
     const hash = await bcrypt.hash(psw, 15);
-
+    console.log(req.body.email);
+    const user2 = await User.find({
+      email: req.body.email
+    });
+    if (user2.length > 0) {
+      res.status(400).send({ status: 'DUPLICATED_VALUES', message: 'DUPLICATED_EMAIL' });
+      return;
+    }
     const user = await User.create({
       name,
       email,
       psw: hash
-
     });
     res.send({ status: 'OK', message: 'user created' });
   } catch (e) {
@@ -55,21 +61,17 @@ const register = async (req, res) => {
         .send({ status: 'DUPLICATED_VALUES', message: e.keyValue });
       return;
     }
-     console.log('error createuser', e.message);
     res.status(500).send({ status: 'ERROR', message: e.message });
   }
 };
 
-
 const getUser = async (req, res) => {
   try {
-    const user = await User.find();
+    const user = await User.find({ });
     res.json(user);
   } catch (e) {
-    console.log('getUser error:', e);
     res.status(500).send({ status: 'ERROR', data: e.message });
   }
 };
 
-
-module.exports = {login, register, getUser};
+module.exports = { login, register, getUser };

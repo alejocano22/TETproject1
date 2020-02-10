@@ -33,13 +33,12 @@ export class LoginComponent implements OnInit {
     else {
       let data: any = Object.assign(this.userForm.value);
       let email = data['email'];
-      this.http.post(myGlobals.url + 'user/login', data).subscribe((data: any) => {
-
+      this.http.post(myGlobals.url + 'user/login', data).subscribe((info: any) => {
         localStorage.setItem('email', email);
-
+        let token = info.data['token'];
+        localStorage.setItem('token', token);
         let path = '/arduinoView';
         this.router.navigate([path]);
-
       }, error => {
         alert("Incorrect user or password !");
         this.serviceErrors = error.error.error;

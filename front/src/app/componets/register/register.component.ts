@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
+import { user } from 'src/app/models/user.model';
 import * as myGlobals from '../globals';
 
 @Component({
@@ -17,6 +18,7 @@ export class RegisterComponent implements OnInit {
   userForm: FormGroup;
   guid: string;
   serviceErrors: any = {};
+  public userArray: user[] = [];
 
   constructor(private formBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
 
@@ -35,16 +37,10 @@ export class RegisterComponent implements OnInit {
     }
     else {
       let data: any = Object.assign(this.userForm.value);
-      let email = data['email'];
       this.http.post(myGlobals.url + 'user/register', data).subscribe((data: any) => {
-        alert("Registered !")
-        localStorage.setItem('email', email);
-
-        console.log(localStorage.getItem('email'));
-        
-        let path = '/arduinoView';
+        alert("Registered !");
+        let path = '/login';
         this.router.navigate([path]);
-
       }, error => {
         alert("Error in the register.");
         this.serviceErrors = error.error.error;

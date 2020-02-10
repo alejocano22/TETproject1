@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { arduino } from '../models/arduino.model';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from "@angular/router";
@@ -23,7 +23,11 @@ export class arduinoService {
     let data: any = Object.assign(this.userForm.value);
     
     console.log(data);
-
-    return this.http.get<arduino[]>(myGlobals.url + 'arduino/get?email=' + localStorage.getItem('email'));
+    let myHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'token': localStorage.getItem('token')
+    });
+    console.log("Headers "+myHeaders); 
+    return this.http.get<arduino[]>(myGlobals.url + 'arduino/get?email=' + localStorage.getItem('email'), { headers: myHeaders });
   }
 }

@@ -3,7 +3,6 @@ const { Schema } = mongoose;
 
 const arduinoSchema = new Schema({
   user: { type: String, required: true },
-  //mongoose.Schema.Types.ObjectId, ref: 'user'
   temperature: { type: String, required: true },
   humidity: { type: String, required: true },
   gps: { type: String, required: true }
