@@ -65,13 +65,4 @@ const register = async (req, res) => {
   }
 };
 
-const getUser = async (req, res) => {
-  try {
-    const user = await User.find({ });
-    res.json(user);
-  } catch (e) {
-    res.status(500).send({ status: 'ERROR', data: e.message });
-  }
-};
-
-module.exports = { login, register, getUser };
+module.exports = { login, register };
