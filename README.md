@@ -1,7 +1,7 @@
 # TETproject1
-Tópicos Especiales en Telemática - Primer Proyecto 
-Estudiante: Alejandro Cano Múnera
-Universidad EAFIT (2020)
+Tópicos Especiales en Telemática - Primer Proyecto <br />
+Estudiante: Alejandro Cano Múnera <br />
+Universidad EAFIT (2020) <br />
 # REQUISITOS FUNCIONALES DE LA APP
 - El sistema permite iniciar sesión a los usuarios.
 - El sistema verifica que el formulario de inicio de sesión tenga todos los campos.
