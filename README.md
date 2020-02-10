@@ -30,22 +30,22 @@ Universidad EAFIT (2020) <br />
 - Angular
 
 # ESPECIFICACIÓN DE LOS SERVICIOS API REST DEL BACKEND
-- postArduino():
-o   url: http://localhost:3000/arduino/post
-o   Descripción: Envía una petición tipo post de un Arduino.
+- postArduino(): <br />
+o   url: http://localhost:3000/arduino/post <br />
+o   Descripción: Envía una petición tipo post de un Arduino. <br />
 
 - getArduino():
-o   url: http://localhost:3000/arduino/get?email=
-o   Parámetros: Se le pasa como parámetro el email al cual está asociado el Arduino
-o   Descripción: Envía una petición tipo get y devuelve los Arduinos asociados al email dado en los parámetros.
+o   url: http://localhost:3000/arduino/get?email= <br />
+o   Parámetros: Se le pasa como parámetro el email al cual está asociado el Arduino <br />
+o   Descripción: Envía una petición tipo get y devuelve los Arduinos asociados al email dado en los parámetros. <br />
 
 - login():
-o   url:  http://localhost:3000/user/login
-o   Descripción: Envía una petición tipo post con los parámetros email y password y se hacen las validaciones necesarias para autentificar el usuario.
+o   url:  http://localhost:3000/user/login <br />
+o   Descripción: Envía una petición tipo post con los parámetros email y password y se hacen las validaciones necesarias para autentificar el usuario. <br />
 
 - register():
-o   url: http://localhost:3000/user/register
-o   Descripción: Envía una petición tipo post con los parámetros name, email y password y se hacen las validaciones necesarias para crear el nuevo usuario.
+o   url: http://localhost:3000/user/register <br />
+o   Descripción: Envía una petición tipo post con los parámetros name, email y password y se hacen las validaciones necesarias para crear el nuevo usuario. <br />
 
 # AUTENTICACIÓN DE LOS SERVICIOS API REST
 
