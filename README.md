@@ -1,5 +1,4 @@
-# TETproject1
-Tópicos Especiales en Telemática - Primer Proyecto <br />
+# Proyecto 1 - Tópicos especiales en telemática
 Estudiante: Alejandro Cano Múnera <br />
 Universidad EAFIT (2020) <br />
 # REQUISITOS FUNCIONALES DE LA APP
